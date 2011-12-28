@@ -3,17 +3,17 @@
 //  TransformationDemo
 //
 //  Created by Benedict Cohen on 24/12/2011.
-//  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2011 Benedict Cohen. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@class EMKViewController;
+@class EMKTransfomSequenceViewController;
 
 @interface EMKAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
-@property (strong, nonatomic) EMKViewController *viewController;
+@property (strong, nonatomic) EMKTransfomSequenceViewController *viewController;
 
 @end

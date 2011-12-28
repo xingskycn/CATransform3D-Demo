@@ -7,19 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B50A399914AB704900D60A07 /* readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = B50A399814AB704900D60A07 /* readme.txt */; };
+		B5244D9D14A8A8EC00B92711 /* CATransform3DFieldAccessors.m in Sources */ = {isa = PBXBuildFile; fileRef = B5244D9C14A8A8EC00B92711 /* CATransform3DFieldAccessors.m */; };
 		B56EB9CE14A61EF200ECCD0B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B56EB9CD14A61EF200ECCD0B /* UIKit.framework */; };
 		B56EB9D014A61EF200ECCD0B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B56EB9CF14A61EF200ECCD0B /* Foundation.framework */; };
 		B56EB9D214A61EF200ECCD0B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B56EB9D114A61EF200ECCD0B /* CoreGraphics.framework */; };
 		B56EB9D814A61EF200ECCD0B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B56EB9D614A61EF200ECCD0B /* InfoPlist.strings */; };
 		B56EB9DA14A61EF200ECCD0B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B56EB9D914A61EF200ECCD0B /* main.m */; };
 		B56EB9DE14A61EF200ECCD0B /* EMKAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B56EB9DD14A61EF200ECCD0B /* EMKAppDelegate.m */; };
-		B56EB9E114A61EF200ECCD0B /* EMKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B56EB9E014A61EF200ECCD0B /* EMKViewController.m */; };
-		B56EB9E414A61EF200ECCD0B /* EMKViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B56EB9E214A61EF200ECCD0B /* EMKViewController.xib */; };
+		B56EB9E114A61EF200ECCD0B /* EMKTransfomSequenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B56EB9E014A61EF200ECCD0B /* EMKTransfomSequenceViewController.m */; };
+		B56EB9E414A61EF200ECCD0B /* EMKTransfomSequenceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B56EB9E214A61EF200ECCD0B /* EMKTransfomSequenceViewController.xib */; };
 		B56EB9EC14A61EF200ECCD0B /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B56EB9EB14A61EF200ECCD0B /* SenTestingKit.framework */; };
 		B56EB9ED14A61EF200ECCD0B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B56EB9CD14A61EF200ECCD0B /* UIKit.framework */; };
 		B56EB9EE14A61EF200ECCD0B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B56EB9CF14A61EF200ECCD0B /* Foundation.framework */; };
 		B56EB9F614A61EF200ECCD0B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B56EB9F414A61EF200ECCD0B /* InfoPlist.strings */; };
 		B56EB9F914A61EF200ECCD0B /* TransformationDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B56EB9F814A61EF200ECCD0B /* TransformationDemoTests.m */; };
+		B5CFBFF414A7AAF900EF5FEF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5CFBFF314A7AAF900EF5FEF /* QuartzCore.framework */; };
+		B5CFBFF714A7B2FE00EF5FEF /* bobdylan.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B5CFBFF614A7B2FE00EF5FEF /* bobdylan.jpg */; };
+		B5CFBFFA14A7D43200EF5FEF /* EMKTransformationEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = B5CFBFF914A7D43200EF5FEF /* EMKTransformationEditor.m */; };
+		B5CFBFFD14A7D57B00EF5FEF /* EMKNumberEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = B5CFBFFC14A7D57B00EF5FEF /* EMKNumberEditor.m */; };
+		B5CFBFFF14A7D58D00EF5FEF /* EMKNumberEditor.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5CFBFFE14A7D58D00EF5FEF /* EMKNumberEditor.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,25 +40,35 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B50A399814AB704900D60A07 /* readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.txt; sourceTree = "<group>"; };
+		B5244D9B14A8A8EC00B92711 /* CATransform3DFieldAccessors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CATransform3DFieldAccessors.h; path = ../CATransform3DFieldAccessors.h; sourceTree = "<group>"; };
+		B5244D9C14A8A8EC00B92711 /* CATransform3DFieldAccessors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CATransform3DFieldAccessors.m; path = ../CATransform3DFieldAccessors.m; sourceTree = "<group>"; };
 		B56EB9C914A61EF200ECCD0B /* TransformationDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TransformationDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B56EB9CD14A61EF200ECCD0B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B56EB9CF14A61EF200ECCD0B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B56EB9D114A61EF200ECCD0B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		B56EB9D514A61EF200ECCD0B /* TransformationDemo-Info.plist */ = {isa = PBXFileReference; path = "TransformationDemo-Info.plist"; sourceTree = "<group>"; };
+		B56EB9D514A61EF200ECCD0B /* TransformationDemo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TransformationDemo-Info.plist"; sourceTree = "<group>"; };
 		B56EB9D714A61EF200ECCD0B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B56EB9D914A61EF200ECCD0B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		B56EB9DB14A61EF200ECCD0B /* TransformationDemo-Prefix.pch */ = {isa = PBXFileReference; path = "TransformationDemo-Prefix.pch"; sourceTree = "<group>"; };
-		B56EB9DC14A61EF200ECCD0B /* EMKAppDelegate.h */ = {isa = PBXFileReference; path = EMKAppDelegate.h; sourceTree = "<group>"; };
+		B56EB9DB14A61EF200ECCD0B /* TransformationDemo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TransformationDemo-Prefix.pch"; sourceTree = "<group>"; };
+		B56EB9DC14A61EF200ECCD0B /* EMKAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EMKAppDelegate.h; sourceTree = "<group>"; };
 		B56EB9DD14A61EF200ECCD0B /* EMKAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EMKAppDelegate.m; sourceTree = "<group>"; };
-		B56EB9DF14A61EF200ECCD0B /* EMKViewController.h */ = {isa = PBXFileReference; path = EMKViewController.h; sourceTree = "<group>"; };
-		B56EB9E014A61EF200ECCD0B /* EMKViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EMKViewController.m; sourceTree = "<group>"; };
-		B56EB9E314A61EF200ECCD0B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/EMKViewController.xib; sourceTree = "<group>"; };
+		B56EB9DF14A61EF200ECCD0B /* EMKTransfomSequenceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EMKTransfomSequenceViewController.h; sourceTree = "<group>"; };
+		B56EB9E014A61EF200ECCD0B /* EMKTransfomSequenceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EMKTransfomSequenceViewController.m; sourceTree = "<group>"; };
+		B56EB9E314A61EF200ECCD0B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/EMKTransfomSequenceViewController.xib; sourceTree = "<group>"; };
 		B56EB9EA14A61EF200ECCD0B /* TransformationDemoTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TransformationDemoTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B56EB9EB14A61EF200ECCD0B /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		B56EB9F314A61EF200ECCD0B /* TransformationDemoTests-Info.plist */ = {isa = PBXFileReference; path = "TransformationDemoTests-Info.plist"; sourceTree = "<group>"; };
+		B56EB9F314A61EF200ECCD0B /* TransformationDemoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TransformationDemoTests-Info.plist"; sourceTree = "<group>"; };
 		B56EB9F514A61EF200ECCD0B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		B56EB9F714A61EF200ECCD0B /* TransformationDemoTests.h */ = {isa = PBXFileReference; path = TransformationDemoTests.h; sourceTree = "<group>"; };
+		B56EB9F714A61EF200ECCD0B /* TransformationDemoTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransformationDemoTests.h; sourceTree = "<group>"; };
 		B56EB9F814A61EF200ECCD0B /* TransformationDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransformationDemoTests.m; sourceTree = "<group>"; };
+		B5CFBFF314A7AAF900EF5FEF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		B5CFBFF614A7B2FE00EF5FEF /* bobdylan.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bobdylan.jpg; sourceTree = "<group>"; };
+		B5CFBFF814A7D43200EF5FEF /* EMKTransformationEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMKTransformationEditor.h; sourceTree = "<group>"; };
+		B5CFBFF914A7D43200EF5FEF /* EMKTransformationEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMKTransformationEditor.m; sourceTree = "<group>"; };
+		B5CFBFFB14A7D57B00EF5FEF /* EMKNumberEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMKNumberEditor.h; sourceTree = "<group>"; };
+		B5CFBFFC14A7D57B00EF5FEF /* EMKNumberEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMKNumberEditor.m; sourceTree = "<group>"; };
+		B5CFBFFE14A7D58D00EF5FEF /* EMKNumberEditor.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EMKNumberEditor.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5CFBFF414A7AAF900EF5FEF /* QuartzCore.framework in Frameworks */,
 				B56EB9CE14A61EF200ECCD0B /* UIKit.framework in Frameworks */,
 				B56EB9D014A61EF200ECCD0B /* Foundation.framework in Frameworks */,
 				B56EB9D214A61EF200ECCD0B /* CoreGraphics.framework in Frameworks */,
@@ -100,6 +118,7 @@
 		B56EB9CC14A61EF200ECCD0B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B5CFBFF314A7AAF900EF5FEF /* QuartzCore.framework */,
 				B56EB9CD14A61EF200ECCD0B /* UIKit.framework */,
 				B56EB9CF14A61EF200ECCD0B /* Foundation.framework */,
 				B56EB9D114A61EF200ECCD0B /* CoreGraphics.framework */,
@@ -111,12 +130,20 @@
 		B56EB9D314A61EF200ECCD0B /* TransformationDemo */ = {
 			isa = PBXGroup;
 			children = (
+				B50A399814AB704900D60A07 /* readme.txt */,
 				B56EB9DC14A61EF200ECCD0B /* EMKAppDelegate.h */,
 				B56EB9DD14A61EF200ECCD0B /* EMKAppDelegate.m */,
-				B56EB9DF14A61EF200ECCD0B /* EMKViewController.h */,
-				B56EB9E014A61EF200ECCD0B /* EMKViewController.m */,
-				B56EB9E214A61EF200ECCD0B /* EMKViewController.xib */,
+				B56EB9DF14A61EF200ECCD0B /* EMKTransfomSequenceViewController.h */,
+				B56EB9E014A61EF200ECCD0B /* EMKTransfomSequenceViewController.m */,
+				B56EB9E214A61EF200ECCD0B /* EMKTransfomSequenceViewController.xib */,
 				B56EB9D414A61EF200ECCD0B /* Supporting Files */,
+				B5CFBFF814A7D43200EF5FEF /* EMKTransformationEditor.h */,
+				B5CFBFF914A7D43200EF5FEF /* EMKTransformationEditor.m */,
+				B5CFBFFB14A7D57B00EF5FEF /* EMKNumberEditor.h */,
+				B5CFBFFC14A7D57B00EF5FEF /* EMKNumberEditor.m */,
+				B5CFBFFE14A7D58D00EF5FEF /* EMKNumberEditor.xib */,
+				B5244D9B14A8A8EC00B92711 /* CATransform3DFieldAccessors.h */,
+				B5244D9C14A8A8EC00B92711 /* CATransform3DFieldAccessors.m */,
 			);
 			path = TransformationDemo;
 			sourceTree = "<group>";
@@ -124,6 +151,7 @@
 		B56EB9D414A61EF200ECCD0B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B5CFBFF614A7B2FE00EF5FEF /* bobdylan.jpg */,
 				B56EB9D514A61EF200ECCD0B /* TransformationDemo-Info.plist */,
 				B56EB9D614A61EF200ECCD0B /* InfoPlist.strings */,
 				B56EB9D914A61EF200ECCD0B /* main.m */,
@@ -197,6 +225,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = "Benedict Cohen";
 			};
 			buildConfigurationList = B56EB9C314A61EF200ECCD0B /* Build configuration list for PBXProject "TransformationDemo" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -222,7 +251,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				B56EB9D814A61EF200ECCD0B /* InfoPlist.strings in Resources */,
-				B56EB9E414A61EF200ECCD0B /* EMKViewController.xib in Resources */,
+				B56EB9E414A61EF200ECCD0B /* EMKTransfomSequenceViewController.xib in Resources */,
+				B5CFBFF714A7B2FE00EF5FEF /* bobdylan.jpg in Resources */,
+				B5CFBFFF14A7D58D00EF5FEF /* EMKNumberEditor.xib in Resources */,
+				B50A399914AB704900D60A07 /* readme.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,7 +291,10 @@
 			files = (
 				B56EB9DA14A61EF200ECCD0B /* main.m in Sources */,
 				B56EB9DE14A61EF200ECCD0B /* EMKAppDelegate.m in Sources */,
-				B56EB9E114A61EF200ECCD0B /* EMKViewController.m in Sources */,
+				B56EB9E114A61EF200ECCD0B /* EMKTransfomSequenceViewController.m in Sources */,
+				B5CFBFFA14A7D43200EF5FEF /* EMKTransformationEditor.m in Sources */,
+				B5CFBFFD14A7D57B00EF5FEF /* EMKNumberEditor.m in Sources */,
+				B5244D9D14A8A8EC00B92711 /* CATransform3DFieldAccessors.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,12 +325,12 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		B56EB9E214A61EF200ECCD0B /* EMKViewController.xib */ = {
+		B56EB9E214A61EF200ECCD0B /* EMKTransfomSequenceViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				B56EB9E314A61EF200ECCD0B /* en */,
 			);
-			name = EMKViewController.xib;
+			name = EMKTransfomSequenceViewController.xib;
 			sourceTree = "<group>";
 		};
 		B56EB9F414A61EF200ECCD0B /* InfoPlist.strings */ = {
@@ -363,6 +398,7 @@
 				GCC_PREFIX_HEADER = "TransformationDemo/TransformationDemo-Prefix.pch";
 				INFOPLIST_FILE = "TransformationDemo/TransformationDemo-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -374,6 +410,7 @@
 				GCC_PREFIX_HEADER = "TransformationDemo/TransformationDemo-Prefix.pch";
 				INFOPLIST_FILE = "TransformationDemo/TransformationDemo-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -431,6 +468,7 @@
 				B56EB9FE14A61EF200ECCD0B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B56EB9FF14A61EF200ECCD0B /* Build configuration list for PBXNativeTarget "TransformationDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -439,6 +477,7 @@
 				B56EBA0114A61EF200ECCD0B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
