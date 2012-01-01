@@ -19,7 +19,7 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    self.viewController = [[EMKTransfomSequenceViewController alloc] initWithNibName:@"EMKViewController" bundle:nil];
+    self.viewController = [[EMKTransfomSequenceViewController alloc] initWithNibName:nil bundle:nil];
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     return YES;

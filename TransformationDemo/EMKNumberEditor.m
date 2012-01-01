@@ -8,6 +8,19 @@
 
 #import "EMKNumberEditor.h"
 
+typedef enum {
+    EMKNumberEditorSignSection = 0,
+    EMKNumberEditorHundredsSection,
+    EMKNumberEditorTensSection,    
+    EMKNumberEditorOnesSection,    
+    EMKNumberEditorPointSection,
+    EMKNumberEditorTenthsSection,    
+    EMKNumberEditorHundredthsSection,        
+    EMKNumberEditorThousandantsSection,        
+    EMKNumberEditorSectionCount,
+} EMKNumberEditorPickerSections;
+
+
 @interface EMKNumberEditor () <UIPopoverControllerDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
 @property(readwrite, nonatomic, strong) UIPopoverController *activePopoverController;
 -(void)refreshNumberPicker;
@@ -56,7 +69,7 @@
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
     //±, 10^2, 10^1, 10^0, decimal place, 10^-1, 10^-2, 10^-3
-    return 8;
+    return EMKNumberEditorSectionCount;
 }
 
 
@@ -65,8 +78,8 @@
 {
     switch (component)
     {
-        case 0:  return 2;
-        case 4:  return 1;            
+        case EMKNumberEditorSignSection:  return 2;
+        case EMKNumberEditorPointSection: return 1;            
         default: return 10;
     }
 }
@@ -78,9 +91,9 @@
 {
     switch (component)
     {
-        case 0:  return (row == 0) ? @"+" : @"-";
-        case 4:  return @".";            
-        default: return [NSString stringWithFormat:@"%i", row % 10];
+        case EMKNumberEditorSignSection : return (row == 0) ? @"+" : @"-";
+        case EMKNumberEditorPointSection: return @".";            
+        default                         : return [NSString stringWithFormat:@"%i", row % 10];
     }
 }
 
@@ -148,11 +161,11 @@
     NSInteger count = [stringValue length];
     for (int i = 0; i < count; i++)
     {
-        NSString *ch = [stringValue substringWithRange:NSMakeRange(i, 1)];
+        NSString *character = [stringValue substringWithRange:NSMakeRange(i, 1)];
         switch (i)
         {
-            case 0:
-                if ([ch isEqualToString:@"-"])
+            case EMKNumberEditorSignSection:
+                if ([character isEqualToString:@"-"])
                 {
                     [numberPicker selectRow:1 inComponent:i animated:NO];
                 }
@@ -163,13 +176,13 @@
                 break;
                 
                 
-            case 5:
+            case EMKNumberEditorPointSection:
                 //do nothing as "." is the only possible value
                 break;
                 
                 
             default:
-                [numberPicker selectRow:[ch integerValue] inComponent:i animated:NO];
+                [numberPicker selectRow:[character integerValue] inComponent:i animated:NO];
                 break;
         }
     }    

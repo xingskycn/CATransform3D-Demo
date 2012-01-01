@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+@class EMKScrubber;
 
 @interface EMKTransfomSequenceViewController : UIViewController
 
@@ -15,8 +16,8 @@
 @property(readwrite, nonatomic, strong) UIView *spotLight;
 @property(readwrite, nonatomic, strong) IBOutlet UIView *actor;
 
-@property(readwrite, nonatomic, strong) IBOutlet UIScrollView *transformationEditorPalette;
-@property(readwrite, nonatomic, strong) IBOutlet UIPageControl *transformationPalettePageIndicator;
+@property(readwrite, nonatomic, strong) IBOutlet UIScrollView *editorPalette;
+@property(readwrite, nonatomic, strong) IBOutlet EMKScrubber *transformationScrubber;
 
 -(IBAction)resetTransformation;
 -(IBAction)play;

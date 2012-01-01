@@ -10,15 +10,18 @@
 #import "EMKTransformationEditor.h"
 
 #import "EMKTransformationEditor.h"
+#import "EMKScrubber.h"
+
 
 @interface EMKTransfomSequenceViewController () <EMKTransformationEditorDelegate>
 
-@property(readwrite, nonatomic, strong) NSArray  *transformEditors;
-@property(readwrite, nonatomic) NSUInteger currentEditorIndex;
-@property(readonly, nonatomic) EMKTransformationEditor *currentEditor;
+@property(readwrite, nonatomic, strong) EMKTransformationEditor *transformEditor;
+@property(readwrite, nonatomic, strong) NSMutableArray  *transforms;
+@property(readwrite, nonatomic) NSUInteger currentTransformIndex;
+@property(readwrite, nonatomic) CATransform3D currentTransform;
 
 
--(void)adjustTransformationEditorPaletteToCurrentOrientation;
+-(void)adjustEditorPaletteToCurrentOrientation;
 @end
 
 
@@ -31,18 +34,41 @@
 @synthesize centerStage = _centerStage;
 @synthesize spotLight = _spotLight;
 
-@synthesize transformEditors = _transformEditors;
-@synthesize transformationEditorPalette = _transformationEditorPalette;
-@synthesize transformationPalettePageIndicator = _transformationPalettePageIndicator;
+@synthesize transforms = _transforms;
+@synthesize currentTransformIndex = _currentTransformIndex;
 
-@synthesize currentEditorIndex = _currentEditorIndex;
+@synthesize editorPalette = _editorPalette;
+@synthesize transformEditor = _transformEditor;
+@synthesize transformationScrubber = _transformationScrubber;
 
 
--(EMKTransformationEditor *)currentEditor
+
+-(CATransform3D)currentTransform
 {    
-    return [self.transformEditors objectAtIndex:self.currentEditorIndex];
-                        
+    return [[self.transforms objectAtIndex:self.currentTransformIndex] CATransform3DValue];
 }
+
+
+
+-(void)setCurrentTransform:(CATransform3D)aTransform
+{
+    [self.transforms replaceObjectAtIndex:self.currentTransformIndex withObject:[NSValue valueWithCATransform3D:aTransform]];
+}
+
+
+
+#pragma mark - instance life cycle
+//set up base transformation
+-(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self)
+    {
+        _transforms = [NSMutableArray arrayWithObjects:[NSValue valueWithCATransform3D:CATransform3DIdentity], [NSValue valueWithCATransform3D:CATransform3DIdentity], nil];
+    }
+    return self;
+}
+
 
 
 
@@ -64,39 +90,45 @@
     self.spotLight = spotLight;
     
     
-    //create and store 2 transformEditors
-    NSArray *transformEditors = [NSArray arrayWithObjects:[EMKTransformationEditor new], [EMKTransformationEditor new], nil];        
-    NSInteger transformEditorsCount = [transformEditors count];    
+    //configure editorPalette and create array for storing editors
+    UIScrollView *editorPalette = self.editorPalette;
+    editorPalette.pagingEnabled = YES;
+    editorPalette.showsHorizontalScrollIndicator = NO;        
 
-    self.transformEditors = transformEditors;    
-    
-    //configure the page indicator
-    self.transformationPalettePageIndicator.numberOfPages = transformEditorsCount;
-    
-    //configure transformationEditorPalette
-    UIScrollView *transformationEditorPalette = self.transformationEditorPalette;
-    transformationEditorPalette.pagingEnabled = YES;
-    transformationEditorPalette.showsHorizontalScrollIndicator = NO;    
-    
-    //add each editor to the palette
-    NSInteger i = 0;
-    CGSize paletteSize = transformationEditorPalette.frame.size;
-    for (EMKTransformationEditor *transformEditor in transformEditors)
-    {
-        transformEditor.delegate = self;
-        transformEditor.view.frame = (CGRect){.size = paletteSize, .origin = CGPointMake(paletteSize.width * i, 0)};
-        transformEditor.view.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        [transformationEditorPalette addSubview:transformEditor.view];
+    //create array to store the editor views    
+    NSMutableArray *editorViews = [NSMutableArray new];
         
+    //create transformEditor and add view to editor views
+    EMKTransformationEditor *transformEditor = [EMKTransformationEditor new];
+    transformEditor.delegate = self;    
+    [editorViews addObject:transformEditor.view];
+    self.transformEditor = transformEditor;
+    
+    //position and size the editors and palette
+    CGSize paletteSize = editorPalette.frame.size;
+    int i = 0;
+    for (UIView *view in editorViews)
+    {
+        view.frame = (CGRect){.size = paletteSize, .origin = CGPointMake(i * paletteSize.width, 0)};
+        view.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        [editorPalette addSubview:view];
         i++;
     }
+    //size the editorPalette
+    editorPalette.contentSize = CGSizeMake(paletteSize.width * [editorViews count], paletteSize.height);    
     
-    transformationEditorPalette.contentSize = CGSizeMake(paletteSize.width * transformEditorsCount, paletteSize.height);    
+    
+    //configure the scrubber
+    EMKScrubber *scrubber = self.transformationScrubber;
+    scrubber.duration = 2;
+    [scrubber reloadData];
+    scrubber.selectedMarkIndex = self.currentTransformIndex;
+    scrubber.selectedMark.backgroundColor = [UIColor blueColor];        
 }
 
 
 
-#pragma marks - View management
+#pragma marks - rotation
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
@@ -107,16 +139,19 @@
 
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
-    [self adjustTransformationEditorPaletteToCurrentOrientation];
+    [self adjustEditorPaletteToCurrentOrientation];
 }
 
 
 
--(void)adjustTransformationEditorPaletteToCurrentOrientation
+-(void)adjustEditorPaletteToCurrentOrientation
 {
-    UIScrollView *paletteScrollView = self.transformationEditorPalette;
-    NSInteger editorCount = [self.transformEditors count];    
-    const NSInteger index = self.currentEditorIndex;
+    UIScrollView *paletteScrollView = self.editorPalette;
+    
+    //TODO: determine index from contentSize and contentOffset
+    NSUInteger index = 0;
+    NSUInteger editorCount = 1;
+    
     
     //adjust contentOffset (only x has changed)
     CGSize postRotationPaletteSize = paletteScrollView.frame.size;    
@@ -129,20 +164,42 @@
 
 
 
-#pragma mark - scrollView delegate methods
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+#pragma mark - view refreshing
+-(void)refreshActor
 {
-    //figure out the new index
-    NSInteger newIndex = scrollView.contentOffset.x / scrollView.frame.size.width;
-    self.currentEditorIndex = newIndex;
-    
-    //update page indicator
-    UIPageControl *transformationPalettePageIndicator = self.self.transformationPalettePageIndicator;    
-    transformationPalettePageIndicator.currentPage = newIndex;
+    self.actor.layer.transform = self.currentTransform;
+}
 
-    //update transform
-    CATransform3D transform = self.currentEditor.transformation;
-    self.actor.layer.transform = transform;
+
+
+#pragma mark - scrubber data source
+-(NSUInteger)numberOfMarksInScrubber:(EMKScrubber *)scrubber
+{
+    return 2;// [self.transforms count];
+}
+
+
+
+-(NSTimeInterval)scrubber:(EMKScrubber *)scrubber timeForMark:(NSUInteger)markIndex
+{    
+    return scrubber.duration * (CGFloat)markIndex / (2.0 - 1.0);
+}
+    
+
+
+#pragma mark - scrubber delegate
+-(void)scrubber:(EMKScrubber *)scrubber didSelectMark:(NSUInteger)markIndex
+{
+    for (UIView* mark in [scrubber marks])
+    {
+        mark.backgroundColor = [UIColor lightGrayColor];
+    }
+    
+    scrubber.selectedMark.backgroundColor = [UIColor blueColor];    
+    
+    self.currentTransformIndex = markIndex;
+    self.transformEditor.transformation = self.currentTransform;
+    [self refreshActor];
 }
 
 
@@ -150,18 +207,19 @@
 #pragma mark - transformationEditor delegate
 -(void)transformationEditorTransformationChanged:(EMKTransformationEditor *)transformationEditor
 {
-    //update the visible animation
-    self.actor.layer.transform = self.currentEditor.transformation;
+    self.currentTransform = transformationEditor.transformation;
+    [self refreshActor];
 }
+
 
 
 
 #pragma mark - actions
 -(IBAction)resetTransformation
 {
-    EMKTransformationEditor *editor = self.currentEditor;
-    editor.transformation = CATransform3DIdentity;
-    self.actor.layer.transform = editor.transformation;
+    self.currentTransform = CATransform3DIdentity;
+    self.transformEditor.transformation = self.currentTransform;
+    [self refreshActor];    
 }
 
 
@@ -169,24 +227,44 @@
 -(IBAction)play
 {
     //get the relevant editors
-    NSArray *editors = self.transformEditors;
-    EMKTransformationEditor *startEditor = [editors objectAtIndex:0];
-    EMKTransformationEditor *endEditor = [editors lastObject];    
+    NSArray *transforms = self.transforms;
+    CATransform3D start = [[transforms objectAtIndex:0] CATransform3DValue];
+    CATransform3D end = [[transforms lastObject] CATransform3DValue];
+    
+    [CATransaction begin];
     
     //configure the animation
     CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform"];
-    [animation setFromValue:[NSValue valueWithCATransform3D:startEditor.transformation]];
-    [animation setToValue:[NSValue valueWithCATransform3D:endEditor.transformation]];    
-    [animation setDuration:2];
+    [animation setFromValue:[NSValue valueWithCATransform3D:start]];
+    [animation setToValue:[NSValue valueWithCATransform3D:end]];    
+    [animation setDuration:self.transformationScrubber.duration];
     animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
 
-    //set the transformation to the current state so
-    //that when the animation ends its in the correct state
+    //set the transformation model to the current state so that when the animation ends it represents the model
     CALayer *layer = self.actor.layer;
-    layer.transform = self.currentEditor.transformation;
-    [layer addAnimation:animation forKey:@"transformation"];
+    layer.transform = self.currentTransform;
+
+    //update the editor to reflect the presentation layer
+    CADisplayLink *displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(refreshTransform)];    
+    [displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+    
+    //remove the display link on completion
+    [CATransaction setCompletionBlock:^{
+        [displayLink invalidate];
+    }];
+    
+    
+    //add the animation
+    [layer addAnimation:animation forKey:@"transformation"];    
+     
+    [CATransaction commit];
 }
 
+
+-(void)refreshTransform
+{
+    self.transformEditor.transformation = [(CALayer *)self.actor.layer.presentationLayer transform];
+}
 
 @end
 
